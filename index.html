@@ -8,6 +8,22 @@
 <meta content="#0b1220" name="theme-color"/>
 <title>Truong Anh Tuan | Software Engineering Portfolio</title>
 <link href="assets/css/style.css" rel="stylesheet"/>
+<style>
+/* Keep the two original BookStore screenshots at their natural 16:9 ratio. */
+#projects .bookstore-project .bookstore-gallery .media-frame {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+}
+#projects .bookstore-project .bookstore-gallery .media-frame img {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    aspect-ratio: 16 / 9;
+    object-fit: contain !important;
+}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -77,8 +93,8 @@
 <section class="section projects-section" id="projects">
 <div class="container">
 <div class="section-heading section-heading-row"><div><p class="eyebrow">SELECTED ACADEMIC WORK</p><h2>Featured <span class="accent">Projects</span></h2></div><p class="section-subtitle">A selection of team projects and my individual contributions.</p></div>
-<article class="project-card">
-<div class="project-gallery">
+<article class="project-card bookstore-project">
+<div class="project-gallery bookstore-gallery">
 <figure class="media-frame">
     <img alt="BookStore customer book catalog"
          loading="lazy"
