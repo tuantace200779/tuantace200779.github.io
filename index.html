@@ -1,821 +1,343 @@
-:root {
-  --bg: #0b1220;
-  --bg-soft: #101b2d;
-  --panel: #121e31;
-  --panel-2: #17253a;
-  --text: #edf3fb;
-  --muted: #a8b6c9;
-  --line: rgba(183, 202, 224, .16);
-  --accent: #55c4f2;
-  --accent-2: #93e3ff;
-  --white: #fff;
-  --radius: 18px;
-  --shadow: 0 18px 55px rgba(0, 0, 0, .22);
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 86px; }
-body { margin: 0; color: var(--text); background: var(--bg); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; }
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
-.container { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
-.narrow { width: min(850px, calc(100% - 48px)); }
-.accent { color: var(--accent); }
-.site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: rgba(11, 18, 32, .88); backdrop-filter: blur(16px); }
-.nav-wrap { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
-.brand { display: inline-flex; align-items: center; gap: 11px; font-size: .84rem; font-weight: 800; letter-spacing: .12em; }
-.brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid rgba(85,196,242,.6); border-radius: 10px; color: var(--accent); font-size: .8rem; letter-spacing: 0; }
-.main-nav { display: flex; align-items: center; gap: 30px; color: var(--muted); font-size: .88rem; }
-.main-nav a { transition: color .2s ease; }
-.main-nav a:hover, .text-link:hover { color: var(--accent); }
-.nav-contact { color: var(--text); padding: 9px 16px; border: 1px solid var(--line); border-radius: 99px; }
-.menu-toggle { display: none; border: 1px solid var(--line); color: var(--text); background: transparent; border-radius: 9px; padding: 8px 11px; font-size: 1.15rem; }
-.hero { position: relative; overflow: hidden; padding: 88px 0 94px; background: radial-gradient(ellipse at 80% 35%, rgba(48, 127, 175, .18), transparent 38%), linear-gradient(130deg, #0b1220 20%, #0e1a2b 100%); }
-.hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .19; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 42px 42px; mask-image: linear-gradient(90deg, transparent, #000 70%); }
-.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 70px; }
-.eyebrow { margin: 0 0 16px; color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
-.status-dot { display: inline-block; width: 7px; height: 7px; margin: 0 8px 1px 0; border-radius: 50%; background: #72d6a0; box-shadow: 0 0 0 4px rgba(114,214,160,.12); }
-.hero h1 { margin: 0; font-size: clamp(3.3rem, 7vw, 5.4rem); line-height: 1.04; letter-spacing: -.065em; font-weight: 800; }
-.hero h2 { max-width: 660px; margin: 20px 0 15px; color: #d7e3f1; font-size: clamp(1.25rem, 2.4vw, 1.75rem); line-height: 1.35; font-weight: 550; letter-spacing: -.025em; }
-.hero-text { max-width: 640px; margin: 0; color: var(--muted); font-size: 1rem; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 29px; }
-.button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; padding: 0 19px; border-radius: 10px; font-size: .9rem; font-weight: 750; transition: transform .18s ease, background .18s ease, border .18s ease; }
-.button:hover { transform: translateY(-2px); }
-.button-primary { color: #07131f; background: var(--accent); }
-.button-primary:hover { background: var(--accent-2); }
-.button-secondary { color: var(--text); border: 1px solid rgba(183,202,224,.3); background: rgba(255,255,255,.025); }
-.button-secondary:hover { border-color: var(--accent); }
-.hero-meta { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 32px; color: var(--muted); font-size: .8rem; }
-.hero-meta b { display: block; margin-bottom: 2px; color: #e1eaf5; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; }
-.hero-visual { position: relative; display: grid; min-height: 410px; place-items: center; }
-.visual-glow { position: absolute; width: 310px; height: 310px; border-radius: 50%; background: rgba(85,196,242,.12); filter: blur(45px); }
-.profile-frame { position: relative; width: min(285px, 70vw); aspect-ratio: 1; padding: 10px; overflow: hidden; border: 1px solid rgba(85,196,242,.5); border-radius: 50%; background: linear-gradient(145deg, rgba(85,196,242,.22), rgba(255,255,255,.02)); box-shadow: 0 0 0 16px rgba(85,196,242,.035), var(--shadow); }
-.profile-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 24%; border-radius: 50%; background: #e8edf2; }
-.floating-card { position: absolute; display: flex; align-items: center; gap: 10px; min-width: 138px; padding: 12px 14px; border: 1px solid rgba(186,211,236,.17); border-radius: 13px; background: rgba(17,29,47,.92); box-shadow: var(--shadow); }
-.floating-card b, .floating-card small { display: block; line-height: 1.3; }
-.floating-card b { font-size: .82rem; }
-.floating-card small { margin-top: 3px; color: var(--muted); font-size: .7rem; }
-.mini-icon { display: grid; width: 32px; height: 32px; place-items: center; border-radius: 9px; background: rgba(85,196,242,.14); color: var(--accent); font-weight: 900; }
-.react-icon { font-size: 1.2rem; }
-.card-java { top: 64px; left: 0; }
-.card-react { right: -12px; bottom: 76px; }
-.hero-caption { position: absolute; bottom: 7px; color: #7d91aa; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
-.section { padding: 92px 0; }
-.about-section { background: #0e1929; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.section-heading { margin-bottom: 32px; }
-.section-heading .eyebrow { margin-bottom: 8px; }
-.section-heading h2 { margin: 0; font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.15; letter-spacing: -.05em; }
-.section-subtitle { max-width: 490px; margin: 10px 0 0; color: var(--muted); font-size: .92rem; }
-.about-lead { margin: 0 0 16px; color: #e4edf7; font-size: 1.19rem; line-height: 1.7; }
-.about-body { margin: 0; color: var(--muted); }
-.skills-section { background: var(--bg); }
-.skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-.skill-card { min-height: 154px; padding: 21px; border: 1px solid var(--line); border-radius: 15px; background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012)); transition: border .2s ease, transform .2s ease; }
-.skill-card:hover { border-color: rgba(85,196,242,.48); transform: translateY(-3px); }
-.skill-symbol { display: grid; width: 38px; height: 38px; place-items: center; margin-bottom: 14px; border-radius: 10px; color: var(--accent); background: rgba(85,196,242,.12); font-weight: 850; }
-.js-symbol { color: #ffe08a; background: rgba(255,224,138,.1); font-size: .72rem; }
-.react-symbol { font-size: 1.35rem; }
-.sql-symbol { font-size: .62rem; }
-.web-symbol { font-size: .75rem; }
-.api-symbol { font-size: .62rem; }
-.c-symbol { color: #bda9ff; background: rgba(189,169,255,.12); }
-.git-symbol { color: #f3a67b; background: rgba(243,166,123,.12); }
-.skill-card h3 { margin: 0; font-size: .98rem; }
-.skill-card p { margin: 4px 0 0; color: var(--muted); font-size: .76rem; }
-.projects-section { background: #0e1929; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.section-heading-row { display: flex; align-items: end; justify-content: space-between; gap: 30px; }
-.section-heading-row .section-subtitle { max-width: 330px; margin-bottom: 5px; }
-.project-card { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 30px; margin-top: 22px; padding: 27px; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.012)); box-shadow: 0 12px 35px rgba(0,0,0,.12); }
-.project-gallery { display: grid; grid-template-columns: 1fr; align-content: start; gap: 13px; }
-.media-frame { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; width: 100%; min-height: 225px; margin: 0; padding: 10px; aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid rgba(183,202,224,.16); border-radius: 12px; background: #e8edf3; }
-.media-frame img { display: block; width: auto; height: auto; max-width: 100%; max-height: 180px; object-fit: contain; border-radius: 6px; }
-.media-frame figcaption { color: #607188; font-size: .68rem; line-height: 1.35; text-align: center; }
-.certificates-section { background: var(--bg); border-top: 1px solid var(--line); }
-.certificate-card { display: grid; grid-template-columns: minmax(220px, 290px) minmax(0, 1fr); align-items: center; gap: 30px; max-width: 860px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.012)); }
-.certificate-image-frame { display: flex; align-items: center; justify-content: center; min-height: 330px; margin: 0; padding: 12px; border-radius: 12px; background: #e8edf3; }
-.certificate-image-frame img { display: block; width: 100%; max-height: 370px; object-fit: contain; border-radius: 6px; }
-.certificate-content h3 { margin: 0; font-size: 1.35rem; }
-.certificate-content > p:not(.project-subtitle) { color: #bdc9d8; font-size: .9rem; }
-.project-content { padding: 3px 0; }
-.project-topline { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-.project-index { color: var(--accent); font-size: .8rem; font-weight: 850; letter-spacing: .08em; }
-.project-type { color: #8397b0; font-size: .67rem; font-weight: 750; letter-spacing: .13em; }
-.project-content h3 { margin: 0; font-size: 1.65rem; letter-spacing: -.035em; }
-.project-subtitle { margin: 2px 0 14px; color: var(--accent-2); font-size: .86rem; font-weight: 650; }
-.project-content > p:not(.project-subtitle):not(.honest-note) { color: #bdc9d8; font-size: .88rem; }
-.tag-list { display: flex; flex-wrap: wrap; gap: 7px; margin: 16px 0 18px; }
-.tag-list span { padding: 5px 9px; border: 1px solid rgba(85,196,242,.22); border-radius: 6px; color: #a7dff5; background: rgba(85,196,242,.07); font-size: .68rem; }
-.project-content h4 { margin: 16px 0 6px; color: #edf4fc; font-size: .82rem; }
-.project-content ul, .experience-box ul { margin: 7px 0 0; padding-left: 18px; color: #aebed0; font-size: .82rem; }
-.project-content li, .experience-box li { margin: 7px 0; padding-left: 2px; }
-code { padding: 1px 5px; border-radius: 5px; color: #a5e2ff; background: rgba(85,196,242,.1); font-size: .9em; }
-.repo-link { display: inline-flex; margin-top: 12px; color: var(--accent); font-size: .81rem; font-weight: 750; }
-.honest-note { margin-top: 15px; padding-left: 12px; border-left: 2px solid rgba(85,196,242,.45); color: #879ab1; font-size: .75rem; }
-.experience-section { background: var(--bg); }
-.two-col { display: grid; grid-template-columns: 1fr .9fr; gap: 65px; }
-.timeline-item { position: relative; margin: 22px 0 0 8px; padding: 0 0 0 24px; border-left: 1px solid rgba(85,196,242,.38); }
-.timeline-dot { position: absolute; top: 5px; left: -5px; width: 9px; height: 9px; border: 2px solid var(--accent); border-radius: 50%; background: var(--bg); }
-.timeline-date { margin: 0 0 5px; color: var(--accent); font-size: .74rem; font-weight: 750; letter-spacing: .08em; }
-.timeline-item h3, .experience-box h3 { margin: 0; font-size: 1.04rem; }
-.timeline-item p:last-child { margin: 4px 0 0; color: var(--muted); font-size: .87rem; }
-.experience-box { padding: 27px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
-.experience-box .eyebrow { margin-bottom: 8px; }
-.muted { color: var(--muted); font-size: .82rem; }
-.language-line { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
-.language-line b { color: #e8f1fb; font-weight: 650; }
-.contact-section { padding: 76px 0; background: linear-gradient(115deg, #102039, #12334a); border-top: 1px solid rgba(85,196,242,.2); }
-.contact-inner { display: flex; align-items: center; justify-content: space-between; gap: 35px; }
-.contact-inner h2 { max-width: 520px; margin: 0; font-size: clamp(2rem, 4vw, 2.9rem); line-height: 1.12; letter-spacing: -.05em; }
-.contact-copy { margin: 12px 0 0; color: #b5c8dc; }
-.contact-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 13px; }
-.text-link { color: #c5d8e9; font-size: .86rem; transition: color .2s ease; }
-.site-footer { padding: 20px 0; color: #8496ac; background: #080e18; font-size: .75rem; }
-.footer-inner { display: flex; justify-content: space-between; gap: 18px; }
-.footer-inner a { color: #b5c8dc; }
-[hidden] { display: none !important; }
-@media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr .72fr; gap: 30px; }
-  .skills-grid { grid-template-columns: repeat(2, 1fr); }
-  .project-card { grid-template-columns: 1fr; }
-  .project-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
-  .media-frame { min-height: 205px; }
-  .media-frame img { max-height: 160px; }
-  .certificate-card { grid-template-columns: 250px minmax(0, 1fr); }
-  .two-col { gap: 32px; }
-}
-@media (max-width: 650px) {
-  .container, .narrow { width: min(100% - 32px, 540px); }
-  .nav-wrap { min-height: 66px; }
-  .brand { font-size: .72rem; }
-  .menu-toggle { display: block; }
-  .main-nav { position: absolute; top: 65px; left: 0; right: 0; display: none; padding: 16px 24px 20px; border-bottom: 1px solid var(--line); background: rgba(11,18,32,.98); flex-direction: column; align-items: stretch; gap: 16px; }
-  .main-nav.is-open { display: flex; }
-  .nav-contact { text-align: center; }
-  .hero { padding: 62px 0 68px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 25px; }
-  .hero h1 { font-size: clamp(3rem, 13vw, 4.4rem); }
-  .hero-visual { min-height: 325px; }
-  .profile-frame { width: 230px; }
-  .card-java { top: 42px; left: 2px; }
-  .card-react { right: 0; bottom: 55px; }
-  .hero-caption { bottom: 5px; }
-  .section { padding: 68px 0; }
-  .section-heading-row, .contact-inner { display: block; }
-  .section-heading-row .section-subtitle { margin-top: 14px; }
-  .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .skill-card { min-height: 143px; padding: 16px; }
-  .project-card { padding: 18px; gap: 20px; }
-  .project-gallery { grid-template-columns: 1fr; }
-  .media-frame { min-height: 220px; }
-  .media-frame img { max-height: 175px; }
-  .certificate-card { grid-template-columns: 1fr; padding: 18px; }
-  .certificate-image-frame { min-height: 0; }
-  .certificate-image-frame img { max-height: 420px; width: auto; max-width: 100%; }
-  .project-content h3 { font-size: 1.45rem; }
-  .two-col { grid-template-columns: 1fr; }
-  .contact-inner h2 { margin-bottom: 12px; }
-  .contact-actions { margin-top: 23px; }
-  .footer-inner { flex-wrap: wrap; }
-}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Truong Anh Tuan - Software Engineering student at FPT University. Selected projects in Java Web MVC, ReactJS, REST APIs, and software analysis." name="description"/>
+<meta content="#0b1220" name="theme-color"/>
+<title>Truong Anh Tuan | Software Engineering Portfolio</title>
+<link href="assets/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="site-header">
+<div class="container nav-wrap">
+<a aria-label="Truong Anh Tuan home" class="brand" href="#home"><span class="brand-mark">TA</span><span>TRUONG ANH TUAN</span></a>
+<button aria-expanded="false" aria-label="Open navigation" class="menu-toggle" id="menu-toggle">☰</button>
+<nav aria-label="Main navigation" class="main-nav" id="main-nav">
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#experience">Experience</a>
+<a href="#certificates">Certificates</a>
+<a class="nav-contact" href="#contact">Contact</a>
+</nav>
+</div>
+</header>
+<main>
+<section class="hero" id="home">
+<div class="container hero-grid">
+<div class="hero-copy">
+<p class="eyebrow"><span class="status-dot"></span> SOFTWARE ENGINEERING STUDENT &middot; FPT UNIVERSITY</p>
+<h1>Truong Anh Tuan<span class="accent">.</span></h1>
+<h2>Building web applications and learning through real projects.</h2>
+<p class="hero-text">Third-year Software Engineering student at FPT University with foundational knowledge of Java, JavaScript, ReactJS, SQL Server, and web application development. Through academic projects, I have gained hands-on experience building web features, integrating REST APIs, and implementing user authentication and role-based access.</p>
+<div class="hero-actions">
+<a class="button button-primary" href="#projects">Explore projects <span aria-hidden="true">&searrow;</span></a>
+<a class="button button-secondary" href="mailto:tuantace200779@gmail.com">Contact me</a>
+</div>
+<div class="hero-meta">
+<span><b>Based in</b> Can Tho, Vietnam</span>
+<span><b>Focus</b> Web Development</span>
+</div>
+</div>
+<div class="hero-visual">
+<div class="visual-glow"></div>
+<div class="profile-frame">
+<img alt="Portrait of Truong Anh Tuan" src="assets/img/profile.png"/>
+</div>
+<div class="floating-card card-java"><span class="mini-icon">J</span><span><b>Java</b><small>Web MVC</small></span></div>
+<div class="floating-card card-react"><span class="mini-icon react-icon">⚛</span><span><b>ReactJS</b><small>Frontend</small></span></div>
+<div class="hero-caption">Curious mind. Practical learning.</div>
+</div>
+</div>
+</section>
+<section class="section about-section" id="about">
+<div class="container narrow">
+<div class="section-heading"><p class="eyebrow">A LITTLE ABOUT ME</p><h2>About <span class="accent">Me</span></h2></div>
+<p class="about-lead">I am a third-year Software Engineering student at FPT University &ndash; Can Tho Campus, with foundational knowledge of Java, JavaScript, ReactJS, SQL Server, and web application development. Through academic projects, I have gained hands-on experience building web features, integrating REST APIs, and implementing user authentication and role-based access.</p>
+<p class="about-body">I am seeking an OJT opportunity in software development to apply my programming fundamentals, logical thinking, and teamwork while building, testing, and improving software features with a technical team.</p>
+</div>
+</section>
+<section class="section skills-section" id="skills">
+<div class="container">
+<div class="section-heading"><p class="eyebrow">TOOLS &amp; TECHNOLOGIES</p><h2>Technical <span class="accent">Skills</span></h2><p class="section-subtitle">Technologies and concepts I have practiced in academic projects.</p></div>
+<div class="skills-grid">
+<article class="skill-card"><div class="skill-symbol">J</div><h3>Java</h3><p>Servlet &middot; JSP &middot; MVC</p></article>
+<article class="skill-card"><div class="skill-symbol js-symbol">JS</div><h3>JavaScript</h3><p>ES6 &middot; Async API calls</p></article>
+<article class="skill-card"><div class="skill-symbol react-symbol">⚛</div><h3>ReactJS</h3><p>Router &middot; Redux Toolkit</p></article>
+<article class="skill-card"><div class="skill-symbol sql-symbol">SQL</div><h3>SQL Server</h3><p>Queries &middot; Database operations</p></article>
+<article class="skill-card"><div class="skill-symbol web-symbol">&lt;/&gt;</div><h3>HTML &amp; CSS</h3><p>Web page structure and styling</p></article>
+<article class="skill-card"><div class="skill-symbol api-symbol">API</div><h3>REST API</h3><p>Axios &middot; HTTP GET/POST</p></article>
+<article class="skill-card"><div class="skill-symbol c-symbol">C</div><h3>C</h3><p>Programming fundamentals</p></article>
+<article class="skill-card"><div class="skill-symbol git-symbol">⌘</div><h3>Git &amp; GitHub</h3><p>Version control in team projects</p></article>
+</div>
+</div>
+</section>
+<section class="section projects-section" id="projects">
+<div class="container">
+<div class="section-heading section-heading-row"><div><p class="eyebrow">SELECTED ACADEMIC WORK</p><h2>Featured <span class="accent">Projects</span></h2></div><p class="section-subtitle">A selection of team projects and my individual contributions.</p></div>
+<article class="project-card project-featured">
+<div class="project-gallery">
+<figure class="media-frame"><img alt="BookStore web application interface" loading="lazy" src="assets/img/bookstore-ui.png"/><figcaption>BookStore interface</figcaption></figure>
+<figure class="media-frame"><img alt="BookStore feature backlog and task assignment spreadsheet" loading="lazy" src="assets/img/bookstore-api.png"/><figcaption>Feature backlog and task tracking</figcaption></figure>
+<figure class="media-frame"><img alt="BookStore team GitHub repository structure" loading="lazy" src="assets/img/bookstore-repository.png"/><figcaption>Team repository structure</figcaption></figure></div>
+<div class="project-content">
+<div class="project-topline"><span class="project-index">01</span><span class="project-type">TEAM PROJECT &middot; 2026</span></div>
+<h3>BookStore</h3>
+<p class="project-subtitle">Online Bookstore Web Application &middot; FER202</p>
+<p>A team-built web application for browsing books, viewing book details, submitting reviews, and related bookstore features.</p>
+<div class="tag-list"><span>ReactJS</span><span>React Router DOM</span><span>Redux Toolkit</span><span>Axios</span><span>JSON Server</span><span>Bootstrap 5</span></div>
+<h4>My Contributions</h4>
+<ul>
+<li>Developed the book detail page using dynamic routing (<code>/books/:id</code>) and <code>useParams()</code>.</li>
+<li>Implemented a review form for star ratings and comments.</li>
+<li>Used Redux Toolkit <code>createAsyncThunk</code> to fetch book details and handle asynchronous API requests.</li>
+<li>Integrated review submission with the REST API using HTTP POST requests.</li>
+</ul>
+<a class="repo-link" data-repo="bookstore" hidden="">View source on GitHub &nearrow;</a>
+</div>
+</article>
+<article class="project-card">
+<div class="project-gallery">
+<figure class="media-frame"><img alt="F-Cinema Java Web MVC source code" loading="lazy" src="assets/img/fcinema-code-1.png"/><figcaption>Java Web MVC implementation</figcaption></figure>
+<figure class="media-frame"><img alt="F-Cinema authentication source code" loading="lazy" src="assets/img/fcinema-code-2.png"/><figcaption>Authentication and access control</figcaption></figure>
+</div>
+<div class="project-content">
+<div class="project-topline"><span class="project-index">02</span><span class="project-type">TEAM PROJECT &middot; 2026</span></div>
+<h3>F-Cinema</h3>
+<p class="project-subtitle">Movie Ticket Booking System &middot; PRJ201</p>
+<p>A Java Web MVC application for movie browsing, seat selection, ticket booking, and administrative management.</p>
+<div class="tag-list"><span>Java</span><span>Servlet/JSP</span><span>MVC</span><span>SQL Server</span><span>Session &amp; Cookies</span></div>
+<h4>My Contributions</h4>
+<ul>
+<li>Implemented user registration, login/logout, and profile management.</li>
+<li>Used HTTP Session and cookies to maintain login state and display user information.</li>
+<li>Developed authentication filters and role-based access control for Admin and User accounts.</li>
+<li>Added password-change validation by checking the current password and the new password length.</li>
+</ul>
+<a class="repo-link" data-repo="fcinema" hidden="">View source on GitHub &nearrow;</a>
+</div>
+</article>
+<article class="project-card">
+<div class="project-gallery">
+<figure class="media-frame"><img alt="Hotel Management System feature overview diagram" loading="lazy" src="assets/img/hms-overview.png"/><figcaption>System feature overview</figcaption></figure>
+<figure class="media-frame"><img alt="Hotel Management System high-level architecture diagram" loading="lazy" src="assets/img/hms-architecture.png"/><figcaption>High-level system architecture</figcaption></figure>
+</div>
+<div class="project-content">
+<div class="project-topline"><span class="project-index">03</span><span class="project-type">TEAM PROJECT &middot; 2026</span></div>
+<h3>Hotel Management System</h3>
+<p class="project-subtitle">Requirements Analysis &amp; Documentation &middot; SWR302</p>
+<p>A hotel management system concept covering room reservations, front-desk operations, housekeeping, staff management, room pricing, and operational reporting.</p>
+<div class="tag-list"><span>Requirements Analysis</span><span>Vision &amp; Scope</span><span>System Documentation</span><span>Architecture</span></div>
+<h4>My Contributions</h4>
+<ul>
+<li>Contributed to the Vision and Scope document, defining business objectives, project scope, and major features.</li>
+<li>Analyzed stakeholder needs and documented requirements for reservations, check-in/check-out, housekeeping, and management.</li>
+<li>Identified business risks, assumptions, dependencies, and success metrics for project planning.</li>
+</ul>
+<p class="honest-note">Project focus: software analysis and documentation; not presented as a coding project.</p>
+</div>
+</article>
+<article class="project-card">
+<div class="project-gallery">
+<figure class="media-frame"><img alt="Recycle for Smiles team recycling and fundraising activity" loading="lazy" src="assets/img/ssg105-recycling-activity.jpg"/><figcaption>Recycling and fundraising activity</figcaption></figure>
+<figure class="media-frame"><img alt="Community activity for the Recycle for Smiles project" loading="lazy" src="assets/img/ssg105-community-visit.jpg"/><figcaption>Community activity</figcaption></figure>
+</div>
+<div class="project-content">
+<div class="project-topline"><span class="project-index">04</span><span class="project-type">GROUP PROJECT &middot; 2026</span></div>
+<h3>Recycle for Smiles</h3>
+<p class="project-subtitle">Scrap Collection &amp; Fundraising Project for Orphans &middot; SSG105</p>
+<p>A proposed 10-week community initiative to collect and sort recyclable materials, including plastic bottles, cartons, and aluminum cans, to raise funds for orphaned children in Can Tho City. The project combines environmental awareness with charitable support by using proceeds from recyclable sales to fund essential supplies, books, and food.</p>
+<h4>My Contributions</h4>
+<ul>
+<li>Researched local recycling market prices and potential scrap buyers.</li>
+<li>Planned project activities, survey methods, and information gathering for project evaluation.</li>
+<li>Designed visual materials and Canva presentation slides to communicate the project plan.</li>
+<li>Supported photo and video documentation planning for project activities and the proposed charity visit.</li>
+</ul>
+<p class="honest-note">Key focus areas: research &amp; planning, sustainability, teamwork, and visual communication.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="section experience-section" id="experience">
+<div class="container two-col">
+<div>
+<div class="section-heading"><p class="eyebrow">BACKGROUND</p><h2>Education &amp; <span class="accent">Experience</span></h2></div>
+<div class="timeline-item"><span class="timeline-dot"></span><p class="timeline-date">2024 - Present</p><h3>FPT University - Can Tho Campus</h3><p>Software Engineering</p></div>
+<div class="timeline-item"><span class="timeline-dot"></span><p class="timeline-date">Mar 10 - 31, 2025</p><h3>Kasem Bundit University</h3><p>Intensive English Program</p></div>
+</div>
+<div class="experience-box">
+<p class="eyebrow">FREELANCE EXPERIENCE</p>
+<h3>Freelance AI Contributor</h3>
+<p class="muted">Outlier &middot; Remote &middot; Jun 10 - Jul 14, 2026</p>
+<ul>
+<li>Completed project-based AI tasks following detailed instructions and project-specific quality standards.</li>
+<li>Reviewed task requirements carefully and applied guidelines consistently to deliver accurate results.</li>
+</ul>
+<div class="language-line"><span>English</span><b>Intermediate</b></div>
+<div class="language-line"><span>Japanese</span><b>Basic</b></div>
+</div>
+</div>
+</section>
+<section class="section certificates-section" id="certificates">
+<div class="container">
+<div class="section-heading">
+<p class="eyebrow">CERTIFICATES &amp; RECOGNITION</p>
+<h2>Certificates &amp; <span class="accent">Recognition</span></h2>
+<p class="section-subtitle">Technical, web development, networking, AI, and academic learning credentials.</p>
+</div>
+<div class="certificate-grid">
 
 
-/* Portfolio media refinement: preserve each source image's natural aspect ratio. */
-.project-gallery {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-content: start;
-  gap: 18px;
-}
-.media-frame {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  gap: 7px;
-  width: 100%;
-  min-height: 0;
-  aspect-ratio: auto;
-  margin: 0;
-  padding: 0;
-  overflow: visible;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-}
-.media-frame img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: none;
-  object-fit: initial;
-  border: 1px solid rgba(183,202,224,.16);
-  border-radius: 12px;
-  background: #eef2f7;
-  box-shadow: 0 8px 22px rgba(0,0,0,.16);
-}
-.media-frame figcaption {
-  padding: 0 2px;
-  color: #90a4bc;
-  font-size: .72rem;
-  line-height: 1.4;
-  text-align: left;
-}
-
-.certificate-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 22px;
-}
-.certificate-card {
-  display: grid;
-  grid-template-columns: minmax(145px, 205px) minmax(0, 1fr);
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-  padding: 20px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.012));
-}
-.certificate-image-frame {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 290px;
-  min-height: 0;
-  margin: 0;
-  padding: 10px;
-  overflow: hidden;
-  border: 1px solid rgba(183,202,224,.13);
-  border-radius: 12px;
-  background: #e8edf3;
-}
-.certificate-image-frame a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-.certificate-image-frame img {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 5px;
-}
-.certificate-content {
-  min-width: 0;
-}
-.certificate-content h3 {
-  margin: 0 0 4px;
-  font-size: 1.2rem;
-  line-height: 1.25;
-}
-.certificate-content .project-subtitle {
-  line-height: 1.45;
-  overflow-wrap: anywhere;
-}
-.certificate-content > p:not(.project-subtitle) {
-  color: #bdc9d8;
-  font-size: .86rem;
-  line-height: 1.55;
-}
-
-@media (max-width: 1100px) {
-  .certificate-grid {
-    grid-template-columns: 1fr;
-  }
-  .certificate-card {
-    grid-template-columns: minmax(160px, 220px) minmax(0, 1fr);
-  }
-}
-@media (max-width: 900px) {
-  .project-card {
-    grid-template-columns: 1fr;
-  }
-  .project-gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
-  }
-  .certificate-grid {
-    grid-template-columns: 1fr;
-  }
-}
-@media (max-width: 650px) {
-  .project-gallery {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  .media-frame img {
-    width: 100%;
-    height: auto;
-  }
-  .certificate-card {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 18px;
-  }
-  .certificate-image-frame {
-    height: 320px;
-  }
-}
-
-/* Final portfolio image layout: natural image dimensions, no forced crop or stretching. */
-.project-card {
-  grid-template-columns: minmax(0, 386px) minmax(0, 1fr);
-  align-items: start;
-  gap: 34px;
-}
-.project-gallery {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-content: start;
-  gap: 18px;
-  min-width: 0;
-}
-.media-frame {
-  display: block;
-  width: 100%;
-  min-height: 0;
-  aspect-ratio: auto;
-  margin: 0;
-  padding: 0;
-  overflow: visible;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-}
-.media-frame img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: none;
-  object-fit: initial;
-  border: 1px solid rgba(183,202,224,.14);
-  border-radius: 12px;
-  background: #edf2f7;
-  box-shadow: 0 8px 22px rgba(0,0,0,.16);
-}
-.media-frame figcaption {
-  margin-top: 7px;
-  padding: 0 2px;
-  color: #90a4bc;
-  font-size: .72rem;
-  line-height: 1.4;
-  text-align: left;
-}
-
-/* Display the two original certificate photos as separate, truthful entries. */
-.certificate-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 22px;
-}
-.certificate-card {
-  display: grid;
-  grid-template-columns: minmax(145px, 190px) minmax(0, 1fr);
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-  padding: 20px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.012));
-}
-.certificate-image-frame {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 280px;
-  min-height: 0;
-  margin: 0;
-  padding: 8px;
-  overflow: hidden;
-  border: 1px solid rgba(183,202,224,.13);
-  border-radius: 12px;
-  background: #e8edf3;
-}
-.certificate-image-frame a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-.certificate-image-frame img {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 5px;
-}
-.certificate-content { min-width: 0; }
-.certificate-content h3 { margin: 0 0 4px; font-size: 1.18rem; line-height: 1.25; }
-.certificate-content .project-subtitle { line-height: 1.45; overflow-wrap: anywhere; }
-.certificate-content > p:not(.project-subtitle) { color: #bdc9d8; font-size: .84rem; line-height: 1.55; }
-
-@media (max-width: 1100px) {
-  .certificate-grid { grid-template-columns: 1fr; }
-  .certificate-card { grid-template-columns: minmax(170px, 210px) minmax(0, 1fr); }
-}
-@media (max-width: 900px) {
-  .project-card { grid-template-columns: 1fr; gap: 24px; }
-  .project-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-  .media-frame img { width: 100%; height: auto; }
-}
-@media (max-width: 650px) {
-  .project-card { padding: 18px; }
-  .project-gallery { grid-template-columns: 1fr; gap: 16px; }
-  .certificate-grid { grid-template-columns: 1fr; }
-  .certificate-card { grid-template-columns: 1fr; gap: 16px; padding: 18px; }
-  .certificate-image-frame { height: 350px; }
-}
 
 
-/* Final responsive media layout: retain source proportions and avoid forced image crops. */
-.project-card {
-  grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
-  gap: 36px;
-  align-items: start;
-}
-.project-gallery {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-content: start;
-  gap: 18px;
-  min-width: 0;
-}
-.media-frame {
-  display: block;
-  width: 100%;
-  min-height: 0;
-  aspect-ratio: auto;
-  margin: 0;
-  padding: 0;
-  overflow: visible;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-}
-.media-frame img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: none;
-  object-fit: contain;
-  object-position: center;
-  border: 1px solid rgba(183,202,224,.14);
-  border-radius: 12px;
-  background: #edf2f7;
-  box-shadow: 0 8px 22px rgba(0,0,0,.16);
-}
-.media-frame figcaption {
-  margin-top: 7px;
-  padding: 0 2px;
-  color: #90a4bc;
-  font-size: .72rem;
-  line-height: 1.4;
-  text-align: left;
-}
-
-/* Certificate collection: consistent cards, full certificate visibility, no cropping. */
-.certificate-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 22px;
-}
-.certificate-card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-  padding: 20px;
-  gap: 16px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.012));
-}
-.certificate-image-frame {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 300px;
-  min-height: 0;
-  margin: 0;
-  padding: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(183,202,224,.13);
-  border-radius: 12px;
-  background: #edf2f7;
-}
-.certificate-image-frame a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-}
-.certificate-image-frame img {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 4px;
-}
-.certificate-image-frame figcaption {
-  flex: 0 0 auto;
-  margin-top: 5px;
-  color: #63748a;
-  font-size: .68rem;
-  line-height: 1.3;
-  text-align: center;
-}
-.certificate-photo-pair {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 8px;
-  width: 100%;
-  height: 300px;
-}
-.certificate-photo-pair .certificate-image-frame {
-  height: 300px;
-  padding: 7px;
-}
-.certificate-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 9px;
-  margin: 0 0 7px;
-}
-.certificate-content {
-  min-width: 0;
-}
-.certificate-content h3 {
-  margin: 0 0 5px;
-  font-size: 1.08rem;
-  line-height: 1.3;
-  overflow-wrap: anywhere;
-}
-.certificate-content .project-subtitle {
-  margin: 0 0 8px;
-  color: var(--accent-2);
-  font-size: .82rem;
-  line-height: 1.45;
-  overflow-wrap: anywhere;
-}
-.certificate-content > p:not(.project-subtitle):not(.certificate-meta) {
-  margin: 6px 0;
-  color: #bdc9d8;
-  font-size: .82rem;
-  line-height: 1.5;
-}
-.certificate-content .muted {
-  color: #899bb1;
-  font-size: .77rem;
-}
-
-@media (max-width: 1050px) {
-  .project-card {
-    grid-template-columns: minmax(0, 390px) minmax(0, 1fr);
-    gap: 26px;
-  }
-}
-@media (max-width: 900px) {
-  .project-card {
-    grid-template-columns: 1fr;
-    gap: 22px;
-  }
-  .project-gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-  }
-  .certificate-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 650px) {
-  .project-card {
-    padding: 18px;
-  }
-  .project-gallery {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .certificate-grid {
-    grid-template-columns: 1fr;
-  }
-  .certificate-card {
-    padding: 16px;
-  }
-  .certificate-image-frame,
-  .certificate-photo-pair,
-  .certificate-photo-pair .certificate-image-frame {
-    height: 270px;
-  }
-}
 
 
-/* ===== Final refresh: natural aspect ratios and full certificate gallery ===== */
-.project-card {
-  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
-  align-items: start;
-  gap: 32px;
-}
-.project-gallery {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-content: start;
-  gap: 18px;
-  min-width: 0;
-}
-.media-frame {
-  display: block;
-  width: 100%;
-  height: auto;
-  min-height: 0;
-  aspect-ratio: auto;
-  margin: 0;
-  padding: 0;
-  overflow: visible;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-}
-.media-frame img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: none;
-  object-fit: contain;
-  object-position: center;
-  border: 1px solid rgba(183,202,224,.16);
-  border-radius: 12px;
-  background: #edf2f7;
-  box-shadow: 0 8px 22px rgba(0,0,0,.16);
-}
-.media-frame figcaption {
-  margin-top: 7px;
-  padding: 0 2px;
-  color: #90a4bc;
-  font-size: .72rem;
-  line-height: 1.4;
-  text-align: left;
-}
 
-/* Certificates use a 4:3 preview window; the full image stays visible inside it. */
-.certificate-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 22px;
-}
-.certificate-card {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-  gap: 16px;
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.012));
-}
-.certificate-image-frame {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  min-height: 0;
-  aspect-ratio: 4 / 3;
-  margin: 0;
-  padding: 10px;
-  overflow: hidden;
-  border: 1px solid rgba(183,202,224,.13);
-  border-radius: 12px;
-  background: #edf2f7;
-}
-.certificate-image-frame a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-}
-.certificate-image-frame img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 4px;
-}
-.certificate-image-frame figcaption {
-  flex: 0 0 auto;
-  margin-top: 5px;
-  color: #63748a;
-  font-size: .68rem;
-  line-height: 1.3;
-  text-align: center;
-}
-.certificate-photo-pair {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 8px;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
-}
-.certificate-photo-pair .certificate-image-frame {
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  aspect-ratio: auto;
-  padding: 7px;
-}
-.certificate-content {
-  min-width: 0;
-}
-.certificate-content h3 {
-  margin: 0 0 5px;
-  font-size: 1.12rem;
-  line-height: 1.3;
-  overflow-wrap: anywhere;
-}
-.certificate-content .project-subtitle {
-  margin: 0 0 8px;
-  color: var(--accent-2);
-  font-size: .82rem;
-  line-height: 1.45;
-  overflow-wrap: anywhere;
-}
-.certificate-content > p:not(.project-subtitle):not(.certificate-meta) {
-  margin: 6px 0;
-  color: #bdc9d8;
-  font-size: .82rem;
-  line-height: 1.5;
-}
-.certificate-content .muted {
-  color: #899bb1;
-  font-size: .77rem;
-}
 
-@media (max-width: 900px) {
-  .project-card {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .project-gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-  }
-}
-@media (max-width: 700px) {
-  .project-gallery {
-    grid-template-columns: 1fr;
-  }
-  .certificate-grid {
-    grid-template-columns: 1fr;
-  }
-  .certificate-card {
-    padding: 16px;
-  }
-  .certificate-image-frame {
-    aspect-ratio: 4 / 3;
-  }
-}
+
+<article class="certificate-card">
+<figure class="certificate-image-frame">
+<a href="assets/img/cert-cisco-ccna-introduction-networks.jpg" rel="noopener" target="_blank">
+<img alt="Cisco Networking Academy CCNA Introduction to Networks certificate" loading="lazy" src="assets/img/cert-cisco-ccna-introduction-networks.jpg"/>
+</a>
+<figcaption>CCNA: Introduction to Networks</figcaption>
+</figure>
+<div class="certificate-content">
+<p class="certificate-meta"><span class="project-index">2025</span><span class="project-type">CISCO NETWORKING ACADEMY</span></p>
+<h3>CCNA: Introduction to Networks</h3>
+<p class="project-subtitle">Cisco Networking Academy &middot; FPT University Campus Can Tho</p>
+<p>Certificate for successfully completing the CCNA: Introduction to Networks course.</p>
+<p class="muted">November 10, 2025</p>
+</div>
+</article><article class="certificate-card">
+<figure class="certificate-image-frame">
+<a href="assets/img/cert-coursera-hkust-implementation-testing.jpg" rel="noopener" target="_blank">
+<img alt="HKUST Coursera Software Engineering Implementation and Testing course certificate" loading="lazy" src="assets/img/cert-coursera-hkust-implementation-testing.jpg"/>
+</a>
+<figcaption>Course certificate</figcaption>
+</figure>
+<div class="certificate-content">
+<p class="certificate-meta"><span class="project-type">COURSE CERTIFICATE</span></p>
+<h3>Software Engineering: Implementation and Testing</h3>
+<p class="project-subtitle">The Hong Kong University of Science and Technology &middot; Coursera</p>
+<p>Completed the course on software engineering implementation and testing.</p>
+<p class="muted">June 29, 2026</p></div>
+</article><article class="certificate-card">
+<figure class="certificate-image-frame">
+<a href="assets/img/cert-coursera-hkust-modeling-systems-uml.jpg" rel="noopener" target="_blank">
+<img alt="HKUST Coursera Software Engineering Modeling Software Systems using UML course certificate" loading="lazy" src="assets/img/cert-coursera-hkust-modeling-systems-uml.jpg"/>
+</a>
+<figcaption>Course certificate</figcaption>
+</figure>
+<div class="certificate-content">
+<p class="certificate-meta"><span class="project-type">COURSE CERTIFICATE</span></p>
+<h3>Software Engineering: Modeling Software Systems using UML</h3>
+<p class="project-subtitle">The Hong Kong University of Science and Technology &middot; Coursera</p>
+<p>Completed the course on modeling software systems with UML.</p>
+<p class="muted">June 29, 2026</p></div>
+</article><article class="certificate-card">
+<figure class="certificate-image-frame">
+<a href="assets/img/cert-coursera-amazon-generative-ai-software-development.jpg" rel="noopener" target="_blank">
+<img alt="Amazon Coursera Generative AI in Software Development certificate" loading="lazy" src="assets/img/cert-coursera-amazon-generative-ai-software-development.jpg"/>
+</a>
+<figcaption>Course certificate</figcaption>
+</figure>
+<div class="certificate-content">
+<p class="certificate-meta"><span class="project-type">COURSE CERTIFICATE</span></p>
+<h3>Generative AI in Software Development</h3>
+<p class="project-subtitle">Amazon &middot; Coursera</p>
+<p>Completed the course on generative AI applications in software development.</p>
+<p class="muted">June 9, 2026</p></div>
+</article><article class="certificate-card">
+<figure class="certificate-image-frame">
+<a href="assets/img/cert-coursera-umich-web-design-specialization.jpg" rel="noopener" target="_blank">
+<img alt="University of Michigan Coursera Web Design for Everybody Basics of Web Development and Coding specialization certificate" loading="lazy" src="assets/img/cert-coursera-umich-web-design-specialization.jpg"/>
+</a>
+<figcaption>Specialization certificate</figcaption>
+</figure>
+<div class="certificate-content">
+<p class="certificate-meta"><span class="project-type">SPECIALIZATION</span></p>
+<h3>Web Design for Everybody: Basics of Web Development &amp; Coding</h3>
+<p class="project-subtitle">University of Michigan &middot; Coursera</p>
+<p>Completed the online specialization covering foundational web design and development topics.</p>
+<p class="muted">September 28, 2025</p></div>
+</article><article class="certificate-card">
+<figure class="certificate-image-frame">
+<a href="assets/img/cert-coursera-umich-web-design-capstone.jpg" rel="noopener" target="_blank">
+<img alt="University of Michigan Coursera Web Design for Everybody Capstone course certificate" loading="lazy" src="assets/img/cert-coursera-umich-web-design-capstone.jpg"/>
+</a>
+<figcaption>Course certificate</figcaption>
+</figure>
+<div class="certificate-content">
+<p class="certificate-meta"><span class="project-type">COURSE CERTIFICATE</span></p>
+<h3>Web Design for Everybody Capstone</h3>
+<p class="project-subtitle">University of Michigan &middot; Coursera</p>
+<p>Completed the capstone course for the Web Design for Everybody learning program.</p>
+<p class="muted">September 27, 2025</p></div>
+</article><article class="certificate-card">
+<figure class="certificate-image-frame">
+<a href="assets/img/cert-coursera-sydney-academic-skills.jpg" rel="noopener" target="_blank">
+<img alt="University of Sydney Coursera Academic Skills for University Success specialization certificate" loading="lazy" src="assets/img/cert-coursera-sydney-academic-skills.jpg"/>
+</a>
+<figcaption>Specialization certificate</figcaption>
+</figure>
+<div class="certificate-content">
+<p class="certificate-meta"><span class="project-type">SPECIALIZATION</span></p>
+<h3>Academic Skills for University Success</h3>
+<p class="project-subtitle">The University of Sydney &middot; Coursera</p>
+<p>Completed the online specialization focused on academic skills for university study.</p>
+<p class="muted">May 31, 2025</p>
+</div>
+</article><article class="certificate-card">
+<figure class="certificate-image-frame">
+<a href="assets/img/cert-fpt-academic-preparatory-english.jpg" rel="noopener" target="_blank">
+<img alt="FPT University Certificate of Course Completion for Academic Preparatory English Level 6 Summit 2" loading="lazy" src="assets/img/cert-fpt-academic-preparatory-english.jpg"/>
+</a>
+<figcaption>FPT University &middot; Course completion</figcaption>
+</figure>
+<div class="certificate-content">
+<p class="certificate-meta"><span class="project-type">COURSE COMPLETION</span></p>
+<h3>Academic Preparatory English &ndash; Level 6 Summit 2</h3>
+<p class="project-subtitle">FPT University &middot; Can Tho Campus</p>
+<p>Certificate of course completion issued by FPT University.</p>
+<p class="muted">Issued: 02 July 2025</p></div>
+</article><article class="certificate-card">
+<div class="certificate-photo-pair">
+<figure class="certificate-image-frame">
+<a href="assets/img/fpt-certificate-recognition.jpg" rel="noopener" target="_blank">
+<img alt="Certificate of Recognition for the Intensive English Program at Kasem Bundit University" loading="lazy" src="assets/img/fpt-certificate-recognition.jpg"/>
+</a>
+<figcaption>Certificate of Recognition</figcaption>
+</figure>
+<figure class="certificate-image-frame">
+<a href="assets/img/kbu-certificate-folder.jpg" rel="noopener" target="_blank">
+<img alt="Kasem Bundit University program folder and materials" loading="lazy" src="assets/img/kbu-certificate-folder.jpg"/>
+</a>
+<figcaption>Program materials</figcaption>
+</figure>
+</div>
+<div class="certificate-content">
+<p class="certificate-meta"><span class="project-index">2025</span><span class="project-type">CERTIFICATE OF RECOGNITION</span></p>
+<h3>Intensive English Program</h3>
+<p class="project-subtitle">FPT University &middot; Kasem Bundit University, Thailand</p>
+<p>Certificate of Recognition for participating in the Intensive English Program at Kasem Bundit University.</p>
+<p class="muted">March 10&ndash;31, 2025</p>
+</div>
+</article></div>
+</div>
+</section>
+<section class="contact-section" id="contact">
+<div class="container contact-inner">
+<div><p class="eyebrow">GET IN TOUCH</p><h2>Let's build something <span class="accent">useful.</span></h2><p class="contact-copy">I am open to OJT opportunities and learning experiences in software development.</p></div>
+<div class="contact-actions"><a class="button button-primary" href="mailto:tuantace200779@gmail.com">tuantace200779@gmail.com &nearrow;</a><a class="text-link" href="https://www.fpt.edu.vn/" rel="noopener" target="_blank">FPT University &nearrow;</a><a class="text-link" hidden="" id="github-profile-link" rel="noopener" target="_blank">GitHub Profile &nearrow;</a></div>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="container footer-inner"><span>&copy; <span id="year"></span> Truong Anh Tuan</span><span>Software Engineering Portfolio</span><a href="#home">Back to top &uarr;</a></div></footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
